@@ -11,7 +11,7 @@
              <div class="flex mt-4">
                 <input class="shadow appearance-none border rounded w-100 py-2 px-3 mr-4" placeholder="Filter by title" v-model="filterText" @input="filterTodos()">
                 <label class="md:w-2/3 block text-gray-500 font-bold">
-                  <input class="mr-2 leading-tight" type="checkbox" v-model="showCompleted" @change="filterTodos()">
+                  <input class="mr-2 leading-tight" type="checkbox" v-model="hideCompleted" @change="filterTodos()">
                   <span class="text-sm">
                     Hide completed
                   </span>
@@ -35,7 +35,7 @@
   const todos = ref([])
   const errors = ref('')
   const filterText = ref('')
-  const showCompleted = ref(false)
+  const hideCompleted = ref(false)
 
   onMounted(() => {
     let myTodos = getTodos()
@@ -99,7 +99,7 @@
       }
       return item
     });
-    
+
     myTodos.data = newTodos;
 
     setTodos(myTodos)
@@ -116,7 +116,7 @@
         matchText = item.title.toLowerCase().includes(filterText.value.toLowerCase());
       }
       let matchStatus = true;
-      if (showCompleted.value) {
+      if (hideCompleted.value) {
         matchStatus = item.completed === false
       }
       return matchText && matchStatus;
