@@ -23,6 +23,6 @@
 </template>
 
 <script setup>
-const title = useState('pageTitle', () => 'Todo')
+const pageTitle = useState('pageTitle', () => 'Todo')
 
 </script>
